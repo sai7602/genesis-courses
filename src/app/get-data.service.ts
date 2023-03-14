@@ -29,4 +29,8 @@ export class GetDataService {
       this.httpOptions
     );
   }
+
+  getVideo(videoUrl: string): Observable<any> {
+    return this.http.get<any>(`${videoUrl}`, this.httpOptions);
+  }
 }

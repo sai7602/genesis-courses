@@ -1,13 +1,13 @@
-<ul class="grid grid-col-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-  <li
-    *ngFor="
-      let course of courses | paginate : { itemsPerPage: 10, currentPage: p }
-    "
-  >
-    <app-course-card [course]="course"></app-course-card>
-  </li>
-</ul>
-<pagination-controls
-  (pageChange)="p = $event"
-  previousLabel="Prev"
-></pagination-controls>
+<ng-container *ngIf="courses">
+  <ul class="grid grid-col-1 md:grid-cols-2 xl:grid-cols-4 gap-5 p-5">
+    <li
+      *ngFor="
+        let course of courses | paginate : { itemsPerPage: 10, currentPage: p }
+      "
+    >
+      <app-course-card [course]="course"></app-course-card>
+    </li>
+  </ul>
+  <pagination-controls (pageChange)="p = $event" previousLabel="Prev">
+  </pagination-controls>
+</ng-container>

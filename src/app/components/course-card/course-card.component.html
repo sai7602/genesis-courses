@@ -1,6 +1,6 @@
 <a
-  class="fill relative flex max-w-[364px] flex-col overflow-hidden rounded-[16px] justify-self-center"
-  href="/my-courses/3b77ceb6-fb43-4cf5-a25b-8fe9222a0714"
+  class="fill relative flex max-w-full h-full flex-col overflow-hidden rounded-xl justify-self-center"
+  [routerLink]="course.id"
   style="
     box-shadow: rgba(24, 39, 75, 0.12) 0px 8px 18px -6px,
       rgba(24, 39, 75, 0.12) 0px 12px 42px -4px;
@@ -10,18 +10,21 @@
   >
     {{ course.status }}
   </div>
-  <picture class="image_container__7921w h-[160px] w-auto"
-    ><source
+  <picture class="image_container__7921w h-auto w-auto">
+    <source
       [srcset]="course.previewImageLink + '/cover.webp'"
-      type="image/webp" />
+      type="image/webp"
+    />
     <source
       [srcset]="course.previewImageLink + '/cover.png'"
-      type="image/png" />
+      type="image/png"
+    />
     <img
       class=""
       [src]="course.previewImageLink + '/cover.webp'"
       alt="course-img"
-  /></picture>
+    />
+  </picture>
   <div class="flex flex-[3_0] flex-col p-[25px_24px_32px]">
     <h5
       class="min-h-[42px] flex-[2_0_auto] text-left text-[18px] leading-[22px]"
@@ -33,6 +36,28 @@
     >
       {{ course.description }}
     </p>
+    <div class="mt-3 flex text-left text-lg font-[400]">
+      <p class="self-start">Rating: {{ course.rating }}</p>
+      <ngx-stars
+        [readonly]="true"
+        [initialStars]="course.rating"
+        customSize="1.25rem"
+        class="px-5"
+      ></ngx-stars>
+    </div>
+    <p
+      class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-[14px] font-[400] leading-[20px]"
+    >
+      Number of lessons: {{ course.lessonsCount }}
+    </p>
+    <div>
+      Skills:
+      <ul>
+        <li *ngFor="let skill of course.meta.skills">
+          <p>{{ skill }}</p>
+        </li>
+      </ul>
+    </div>
     <div class="mt-3 h-[1px] bg-[#D5D7DD]"></div>
     <div class="mt-4 flex items-center justify-between">
       <div

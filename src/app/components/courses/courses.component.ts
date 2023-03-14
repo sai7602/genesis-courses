@@ -15,19 +15,11 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
     this.getDataService.getCourses().subscribe(
       (data) => {
-        console.log(data);
+        console.log(data.courses);
         this.courses = data.courses;
       },
       (error) => (this.error = error)
     );
-    this.getDataService
-      .getCourse('352be3c6-848b-4c19-9e7d-54fe68fef183')
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => (this.error = error)
-      );
 
     console.log(this.courses);
   }
