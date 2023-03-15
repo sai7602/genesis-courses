@@ -26,50 +26,38 @@
     />
   </picture>
   <div class="flex flex-[3_0] flex-col p-[25px_24px_32px]">
-    <h5
-      class="min-h-[42px] flex-[2_0_auto] text-left text-[18px] leading-[22px]"
-    >
+    <h5 class="min-h-[42px] flex-[2_0_auto] text-left font-semibold text-2xl">
       {{ course.title }}
     </h5>
     <p
-      class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-[14px] font-[400] leading-[20px]"
+      class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-xl leading-[20px]"
     >
       {{ course.description }}
     </p>
-    <div class="mt-3 flex text-left text-lg font-[400]">
+    <div class="mt-3 flex flex-col text-left text-lg font-bold">
       <p class="self-start">Rating: {{ course.rating }}</p>
       <ngx-stars
         [readonly]="true"
         [initialStars]="course.rating"
         customSize="1.25rem"
-        class="px-5"
+        class=""
       ></ngx-stars>
     </div>
-    <p
-      class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-[14px] font-[400] leading-[20px]"
-    >
+    <p class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
       Number of lessons: {{ course.lessonsCount }}
     </p>
-    <div>
+    <div class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
       Skills:
       <ul>
-        <li *ngFor="let skill of course.meta.skills">
-          <p>{{ skill }}</p>
+        <li
+          *ngFor="let skill of course.meta.skills; let i = index"
+          class="font-normal"
+        >
+          <p>
+            <span class="text-violet-800">{{ i + 1 }} </span>{{ skill }}
+          </p>
         </li>
       </ul>
     </div>
-    <div class="mt-3 h-[1px] bg-[#D5D7DD]"></div>
-    <div class="mt-4 flex items-center justify-between">
-      <div
-        class="flex max-h-[24px] items-center justify-center border-[1px] border-solid py-1 px-2 text-[12px] leading-[16px] font-[500] capitalize rounded-[4px]"
-        style="border-color: rgb(234, 85, 43); color: rgb(234, 85, 43)"
-      >
-        productivity
-      </div>
-      <ul class="rating_container__J5VS_ my-0"></ul>
-      <div class="rounded bg-[#FCC75F] px-2 py-1 text-xs font-medium uppercase">
-        New
-      </div>
-    </div>
-  </div></a
->
+  </div>
+</a>

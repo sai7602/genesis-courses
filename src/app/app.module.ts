@@ -8,8 +8,8 @@ import { CourseCardComponent } from './components/course-card/course-card.compon
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseComponent } from './components/course/course.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
-
 import { NgxStarsModule } from 'ngx-stars';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +17,7 @@ import { NgxStarsModule } from 'ngx-stars';
     CoursesComponent,
     CourseComponent,
     StarRatingComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     BrowserModule,

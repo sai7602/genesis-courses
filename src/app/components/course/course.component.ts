@@ -16,6 +16,7 @@ export class CourseComponent implements OnInit {
   courseID = this.route.snapshot.params['id'];
   course: any;
   error: any;
+
   ngOnInit(): void {
     this.getDataService.getCourse(this.courseID).subscribe(
       (data) => {
@@ -23,6 +24,5 @@ export class CourseComponent implements OnInit {
       },
       (error) => (this.error = error)
     );
-    console.log('test0');
   }
 }
