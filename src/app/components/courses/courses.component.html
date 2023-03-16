@@ -8,6 +8,12 @@
       <app-course-card [course]="course"></app-course-card>
     </li>
   </ul>
-  <pagination-controls (pageChange)="p = $event" previousLabel="Prev">
-  </pagination-controls>
+  <div class="flex justify-center my-5">
+    <pagination-controls
+      class="bg-blue-500 rounded-lg px-3 py-2 text-red-400"
+      (pageChange)="p = $event"
+      previousLabel="Prev"
+    >
+    </pagination-controls>
+  </div>
 </ng-container>

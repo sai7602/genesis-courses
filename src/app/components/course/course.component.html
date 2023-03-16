@@ -1,11 +1,84 @@
-<app-video-player></app-video-player>
+<!-- <ng-container *ngIf="course">
+  <app-video-player
+    [posterSrc]="course.previewImageLink + '/cover.webp'"
+    [videoSrc]="course.meta.courseVideoPreview.link"
+  ></app-video-player>
+</ng-container> -->
+<ng-container *ngIf="course">
+  <div class="w-[80vw] mx-auto">
+    <div class="text-4xl">{{ course.title }}</div>
+    <div class="course-box-title">{{ course.description }}</div>
+    <div class="container">
+      <div class="book-wrap-flex">
+        <div class="book-wrap-poster course-page-poster"></div>
+        <div class="book-wrap-content">
+          <div class="book-wrap-info">
+            <div class="course-box-item">
+              Duration:
+              {{ course.duration | time }} Duration:
+            </div>
 
-<p>course works! {{ courseID }}</p>
-<pre>course works! {{ course | json }}</pre>
-<pre class="text-violet-600">course works! {{ course | json }}</pre>
+            <div class="course-box-item">
+              Number of lessons : {{ course.lessons.length }} video
+            </div>
 
-<video width="400" controls>
-  <source [src]="'.webp'" type="video/webp" />
+            <div class="course-box-item">
+              Launch date {{ course.launchDate | date : "shortDate" }}
+            </div>
+          </div>
+        </div>
+      </div>
 
-  Your browser does not support HTML video.
-</video>
+      <div class="player w-96">
+        <div class="player-box">
+          <div class="player-left">
+            <div
+              id="player"
+              class="ar-6-8"
+              style="
+                padding: 0px;
+                word-spacing: normal;
+                position: relative;
+                box-sizing: content-box !important;
+                text-align: left;
+                user-select: none;
+                font-family: sans-serif;
+                min-height: 15px;
+                font-size: 14px;
+                line-height: 1em;
+                direction: ltr;
+              "
+            >
+              <app-video-player
+                [posterSrc]="posterSrc"
+                [videoSrc]="videoSrc"
+              ></app-video-player>
+            </div>
+          </div>
+          <div class="player-right">
+            <ul id="lessons-list" class="lessons-list">
+              <li
+                (click)="setLessonData(lesson)"
+                class="lessons-item cursor-pointer"
+                data-index="1"
+                *ngFor="let lesson of course.lessons"
+              >
+                <div class="lessons-head">
+                  <span class="lessons-title">Lesson {{ lesson.order }}.</span>
+                  <span class="lessons-duration">
+                    Duration{{ lesson.duration | time }}</span
+                  >
+                </div>
+                <div class="lessons-name">{{ lesson.title }}</div>
+                <div class="lessons-name">
+                  Lesson status: {{ lesson.status }}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre>course works! {{ course | json }}</pre>
+</ng-container>

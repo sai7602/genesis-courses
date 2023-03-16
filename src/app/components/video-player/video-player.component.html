@@ -1,11 +1,11 @@
-<p>video-player works!</p>
-<!-- <video #videoPlayer controls></video> -->
 <video
+  [poster]="posterSrc"
+  #videoPlayer
   id="videoPlayer"
   controls
-  autoplay
-  class="videoCentered"
-  style="width: 80%"
+  muted="true"
+  class="w-full h-full object-cover"
   (mouseenter)="hoverOn()"
   (mouseleave)="hoverOut()"
+
 ></video>

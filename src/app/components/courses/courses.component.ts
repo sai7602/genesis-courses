@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaginationInstance } from 'ngx-pagination';
 import { GetDataService } from 'src/app/get-data.service';
 
 @Component({
@@ -11,7 +12,11 @@ export class CoursesComponent implements OnInit {
   error: any;
   p: number = 1;
   constructor(private getDataService: GetDataService) {}
-
+  public config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: 10,
+    currentPage: 1,
+  };
   ngOnInit() {
     this.getDataService.getCourses().subscribe(
       (data) => {
