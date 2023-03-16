@@ -9,11 +9,6 @@
     </li>
   </ul>
   <div class="flex justify-center my-5">
-    <pagination-controls
-      class="bg-blue-500 rounded-lg px-3 py-2 text-red-400"
-      (pageChange)="p = $event"
-      previousLabel="Prev"
-    >
-    </pagination-controls>
+    <app-pagination (pageChange)="p = $event"></app-pagination>
   </div>
 </ng-container>

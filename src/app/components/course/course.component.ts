@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from 'src/app/get-data.service';
 import { DatePipe } from '@angular/common';
-import { CourseDetail } from 'src/app/course.interface';
+import { CourseDetail, Lesson } from 'src/app/course.interface';
+import { VideoPlayerComponent } from '../video-player/video-player.component';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -10,9 +11,9 @@ import { CourseDetail } from 'src/app/course.interface';
   providers: [DatePipe],
 })
 export class CourseComponent implements OnInit {
+  @ViewChild(VideoPlayerComponent) childComponent!: VideoPlayerComponent;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private getDataService: GetDataService,
     private changeDetector: ChangeDetectorRef
   ) {}
@@ -29,15 +30,14 @@ export class CourseComponent implements OnInit {
         this.course = data;
         this.posterSrc = data.previewImageLink + '/cover.webp';
         this.videoSrc = data.lessons[0].link;
-        console.log(data);
       },
       (error) => (this.error = error)
     );
   }
 
-  setLessonData(lesson: any) {
+  setLessonData(lesson: Lesson) {
     this.videoSrc = lesson.link;
+    this.childComponent.updateVideoSrc(lesson.link);
     this.changeDetector.detectChanges();
-    console.log(lesson.link);
   }
 }

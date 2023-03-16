@@ -11,6 +11,9 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { NgxStarsModule } from 'ngx-stars';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { TimePipe } from './time.pipe';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { LeftComponent } from './components/pagination/icon/left/left.component';
+import { RightComponent } from './components/pagination/icon/right/right.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,9 @@ import { TimePipe } from './time.pipe';
     StarRatingComponent,
     VideoPlayerComponent,
     TimePipe,
+    PaginationComponent,
+    LeftComponent,
+    RightComponent,
   ],
   imports: [
     BrowserModule,

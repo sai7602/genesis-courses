@@ -1,9 +1,3 @@
-<!-- <ng-container *ngIf="course">
-  <app-video-player
-    [posterSrc]="course.previewImageLink + '/cover.webp'"
-    [videoSrc]="course.meta.courseVideoPreview.link"
-  ></app-video-player>
-</ng-container> -->
 <ng-container *ngIf="course">
   <div class="w-[80vw] mx-auto">
     <div class="text-4xl">{{ course.title }}</div>
@@ -13,6 +7,12 @@
         <div class="book-wrap-poster course-page-poster"></div>
         <div class="book-wrap-content">
           <div class="book-wrap-info">
+            <ngx-stars
+              [readonly]="true"
+              [initialStars]="course.rating"
+              customSize="1.25rem"
+              class=""
+            ></ngx-stars>
             <div class="course-box-item">
               Duration:
               {{ course.duration | time }} Duration:
@@ -32,23 +32,7 @@
       <div class="player w-96">
         <div class="player-box">
           <div class="player-left">
-            <div
-              id="player"
-              class="ar-6-8"
-              style="
-                padding: 0px;
-                word-spacing: normal;
-                position: relative;
-                box-sizing: content-box !important;
-                text-align: left;
-                user-select: none;
-                font-family: sans-serif;
-                min-height: 15px;
-                font-size: 14px;
-                line-height: 1em;
-                direction: ltr;
-              "
-            >
+            <div id="player" class="ar-6-8">
               <app-video-player
                 [posterSrc]="posterSrc"
                 [videoSrc]="videoSrc"

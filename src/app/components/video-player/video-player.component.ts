@@ -7,7 +7,6 @@ import {
   AfterContentInit,
   AfterViewInit,
 } from '@angular/core';
-import * as dashjs from 'dashjs';
 import Hls from 'hls.js';
 @Component({
   selector: 'app-video-player',
@@ -26,7 +25,9 @@ export class VideoPlayerComponent
   private video!: HTMLVideoElement;
 
   userInteracted = false;
-
+  updateVideoSrc(videoSrc: string) {
+    this.hls.loadSource(videoSrc);
+  }
   ngOnInit() {
     // Add event listeners to track user interaction
     document.addEventListener('click', () => {
