@@ -23,6 +23,7 @@ export class CourseComponent implements OnInit {
   posterSrc!: string;
   videoSrc!: string;
   shouldReloadVideo = false;
+  lessonTitle!: string;
 
   ngOnInit(): void {
     this.getDataService.getCourse(this.courseID).subscribe(
@@ -30,6 +31,7 @@ export class CourseComponent implements OnInit {
         this.course = data;
         this.posterSrc = data.previewImageLink + '/cover.webp';
         this.videoSrc = data.lessons[0].link;
+        this.lessonTitle = data.lessons[0].title;
       },
       (error) => (this.error = error)
     );
@@ -38,6 +40,7 @@ export class CourseComponent implements OnInit {
   setLessonData(lesson: Lesson) {
     this.videoSrc = lesson.link;
     this.childComponent.updateVideoSrc(lesson.link);
+    this.lessonTitle = lesson.title;
     this.changeDetector.detectChanges();
   }
 }

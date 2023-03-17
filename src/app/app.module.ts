@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +15,9 @@ import { TimePipe } from './time.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LeftComponent } from './components/pagination/icon/left/left.component';
 import { RightComponent } from './components/pagination/icon/right/right.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,9 @@ import { RightComponent } from './components/pagination/icon/right/right.compone
     HttpClientModule,
     NgxPaginationModule,
     NgxStarsModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
