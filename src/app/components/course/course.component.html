@@ -1,5 +1,5 @@
 <ng-container *ngIf="course">
-  <div class="w-[80vw] mx-auto text-slate-700 pt-20">
+  <div class="w-[80vw] mx-auto text-slate-700 py-8">
     <div class="text-4xl py-2">{{ course.title }}</div>
     <div class="text-xl py-2">{{ course.description }}</div>
     <div class="container">
@@ -13,7 +13,7 @@
               customSize="1.25rem"
               class=""
             ></ngx-stars>
-            <div>
+            <div class="flex items-center gap-2">
               <mat-icon aria-hidden="false" aria-label="Example home icon"
                 >timer</mat-icon
               >
@@ -21,7 +21,7 @@
               <span class="font-semibold">{{ course.duration | time }}</span>
             </div>
 
-            <div class="">
+            <div class="flex items-center gap-2">
               Number of lessons:
               <mat-icon aria-hidden="false" aria-label="Example home icon"
                 >looks_{{ course.lessons.length }}</mat-icon
@@ -30,7 +30,7 @@
               video
             </div>
 
-            <div class="">
+            <div class="flex items-center gap-2">
               <mat-icon aria-hidden="false" aria-label="Example home icon">
                 calendar_month</mat-icon
               >
@@ -45,7 +45,7 @@
 
       <div class="text-xl font-semibold py-5">{{ lessonTitle }}</div>
       <div class="player-box basis-[80wv] flex flex-col gap-2 xl:flex-row">
-        <div id="player" class="flex-2">
+        <div id="player" class="flex-2 shadow-lg">
           <app-video-player
             [posterSrc]="posterSrc"
             [videoSrc]="videoSrc"
@@ -63,13 +63,11 @@
               *ngFor="let lesson of course.lessons"
             >
               <div class="lessons-head flex justify-between">
-                <span class="lessons-title">Lesson {{ lesson.order }}.</span>
-                <span class="lessons-duration">
-                  {{ lesson.duration | time }}</span
-                >
+                <span>Lesson {{ lesson.order }}.</span>
+                <span> {{ lesson.duration | time }}</span>
               </div>
               <div class="font-semibold text-sm">{{ lesson.title }}</div>
-              <div class="flex justify-between">
+              <div class="flex justify-between items-center">
                 <span> Lesson status: {{ lesson.status }} </span>
                 <span>
                   <ng-container *ngIf="lesson.status === 'locked'">

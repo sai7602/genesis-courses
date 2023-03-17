@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseComponent } from './components/course/course.component';
-import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { TimePipe } from './time.pipe';
@@ -24,7 +23,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     CourseCardComponent,
     CoursesComponent,
     CourseComponent,
-    StarRatingComponent,
     VideoPlayerComponent,
     TimePipe,
     PaginationComponent,
