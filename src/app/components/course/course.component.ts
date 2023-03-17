@@ -48,9 +48,6 @@ export class CourseComponent implements OnInit {
           this.videoSrc = data.lessons[this.currentLessonId - 1].link;
           this.lessonTitle = data.lessons[this.currentLessonId - 1].title;
         }
-        console.log();
-        console.log(data.id);
-        console.log(data);
       },
       (error) => (this.error = error)
     );

@@ -6,6 +6,7 @@ import {
   ElementRef,
   AfterContentInit,
   AfterViewInit,
+  HostListener,
 } from '@angular/core';
 import Hls from 'hls.js';
 @Component({
@@ -22,35 +23,25 @@ export class VideoPlayerComponent
   @Input() videoSrc!: string;
   @Input() isHovering: boolean = false;
   private hls!: Hls;
-  private video!: HTMLVideoElement;
 
   userInteracted = false;
   updateVideoSrc(videoSrc: string) {
     this.hls.loadSource(videoSrc);
   }
-  ngOnInit() {
-    // Add event listeners to track user interaction
-    document.addEventListener('click', () => {
-      this.userInteracted = true;
-    });
 
-    document.addEventListener('keydown', () => {
-      this.userInteracted = true;
-    });
+  @HostListener('document:click')
+  @HostListener('document:keydown')
+  trackUserInteraction() {
+    this.userInteracted = true;
   }
+
+  ngOnInit() {}
   ngAfterViewInit() {
-    this.video = document.getElementById('videoPlayer') as HTMLVideoElement;
-    console.log(this.videoSrc);
-    console.log(this.video);
     this.hls = new Hls();
     this.hls.loadSource(this.videoSrc);
     this.hls.attachMedia(this.videoPlayer.nativeElement);
-
-    console.log(this.videoPlayer);
-    this.videoPlayer.nativeElement.innerHTML = 'DOM updated succesfully!!!';
   }
   hoverOn() {
-    // this.videoPlayer.nativeElement.play();
     if (this.userInteracted && this.isHovering) {
       this.videoPlayer.nativeElement.muted = true;
       this.videoPlayer.nativeElement.play();
