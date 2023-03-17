@@ -51,16 +51,18 @@
             [videoSrc]="videoSrc"
           ></app-video-player>
         </div>
+
         <div class="flex-1 min-w-[250px]">
           <ul id="lessons-list" class="flex flex-col lessons-list gap-2">
             <li
               (click)="setLessonData(lesson)"
               class="lessons-item cursor-pointer pointer-events-none bg-slate-100 shadow-lg p-2 flex flex-col gap-2 justify-between"
               [ngClass]="{
-                'pointer-events-none': lesson.status === 'locked'
+                'pointer-events-none': lesson.status === 'locked',
+                'bg-slate-300': lesson.order === currentLessonId
               }"
               data-index="1"
-              *ngFor="let lesson of course.lessons"
+              *ngFor="let lesson of sortedLessons"
             >
               <div class="lessons-head flex justify-between">
                 <span>Lesson {{ lesson.order }}.</span>

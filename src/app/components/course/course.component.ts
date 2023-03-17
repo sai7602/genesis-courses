@@ -24,14 +24,33 @@ export class CourseComponent implements OnInit {
   videoSrc!: string;
   shouldReloadVideo = false;
   lessonTitle!: string;
+  currentLessonId!: number;
+  sortedLessons!: Lesson[];
 
   ngOnInit(): void {
     this.getDataService.getCourse(this.courseID).subscribe(
       (data) => {
+        const getLesson = window.localStorage.getItem(data.id);
         this.course = data;
+        this.sortedLessons = data.lessons.sort(
+          (l1: Lesson, l2: Lesson) => l1.order - l2.order
+        );
         this.posterSrc = data.previewImageLink + '/cover.webp';
-        this.videoSrc = data.lessons[0].link;
-        this.lessonTitle = data.lessons[0].title;
+        if (!getLesson) {
+          window.localStorage.setItem(
+            `${data.id}`,
+            JSON.stringify({ lessonId: data.lessons[0].order })
+          );
+          this.videoSrc = data.lessons[0].link;
+          this.lessonTitle = data.lessons[0].title;
+        } else {
+          this.currentLessonId = JSON.parse(getLesson).lessonId;
+          this.videoSrc = data.lessons[this.currentLessonId - 1].link;
+          this.lessonTitle = data.lessons[this.currentLessonId - 1].title;
+        }
+        console.log();
+        console.log(data.id);
+        console.log(data);
       },
       (error) => (this.error = error)
     );
@@ -41,6 +60,12 @@ export class CourseComponent implements OnInit {
     this.videoSrc = lesson.link;
     this.childComponent.updateVideoSrc(lesson.link);
     this.lessonTitle = lesson.title;
+    window.localStorage.setItem(
+      `${this.course.id}`,
+      JSON.stringify({ lessonId: lesson.order })
+    );
+    this.currentLessonId = lesson.order;
+
     this.changeDetector.detectChanges();
   }
 }
