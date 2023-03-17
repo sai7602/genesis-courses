@@ -17,6 +17,7 @@ import { RightComponent } from './components/pagination/icon/right/right.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyHttpInterceptor } from './http-interceptor';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { GetDataService } from './get-data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonToggleModule,
   ],
   providers: [
+    GetDataService,
     { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

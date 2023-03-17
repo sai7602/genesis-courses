@@ -1,56 +1,58 @@
-<a
-  class="fill relative flex max-w-full h-full flex-col overflow-hidden rounded-xl justify-self-center"
-  [routerLink]="course.id"
-  style="
-    box-shadow: rgba(24, 39, 75, 0.12) 0px 8px 18px -6px,
-      rgba(24, 39, 75, 0.12) 0px 12px 42px -4px;
-  "
-  ><div
-    class="absolute top-0 right-0 rounded-bl-[12px] px-5 py-1 text-[12px] font-[600] leading-[16px] bg-[#EA552B] text-white"
-  >
-    {{ course.status }}
-  </div>
-
-  <app-video-player
-    [isHovering]="true"
-    class="h-auto min-h-[320px] w-full"
-    [posterSrc]="course.previewImageLink + '/cover.webp'"
-    [videoSrc]="course.meta.courseVideoPreview.link"
-  ></app-video-player>
-
-  <div class="flex flex-[3_0] flex-col p-[25px_24px_32px]">
-    <div class="min-h-[42px] flex-[2_0_auto] text-left font-semibold text-xl">
-      {{ course.title }}
-    </div>
-    <p
-      class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-xl leading-[20px]"
+<ng-container *ngIf="course">
+  <a
+    class="fill relative flex max-w-full h-full flex-col overflow-hidden rounded-xl justify-self-center"
+    [routerLink]="course.id"
+    style="
+      box-shadow: rgba(24, 39, 75, 0.12) 0px 8px 18px -6px,
+        rgba(24, 39, 75, 0.12) 0px 12px 42px -4px;
+    "
+    ><div
+      class="absolute top-0 right-0 rounded-bl-[12px] px-5 py-1 text-[12px] font-[600] leading-[16px] bg-[#EA552B] text-white"
     >
-      {{ course.description }}
-    </p>
-    <div class="mt-3 flex flex-col text-left text-lg font-bold">
-      <p class="self-start">Rating: {{ course.rating }}</p>
-      <ngx-stars
-        [readonly]="true"
-        [initialStars]="course.rating"
-        customSize="1.25rem"
-        class=""
-      ></ngx-stars>
+      {{ course.status }}
     </div>
-    <p class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
-      Number of lessons: {{ course.lessonsCount }}
-    </p>
-    <div class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
-      Skills:
-      <ul>
-        <li
-          *ngFor="let skill of course.meta.skills; let i = index"
-          class="font-normal"
-        >
-          <p>
-            <span class="text-violet-800">{{ i + 1 }} </span>{{ skill }}
-          </p>
-        </li>
-      </ul>
+
+    <app-video-player
+      [isHovering]="true"
+      class="h-auto min-h-[320px] w-full"
+      [posterSrc]="course.previewImageLink + '/cover.webp'"
+      [videoSrc]="course.meta.courseVideoPreview.link"
+    ></app-video-player>
+
+    <div class="flex flex-[3_0] flex-col p-[25px_24px_32px]">
+      <div class="min-h-[42px] flex-[2_0_auto] text-left font-semibold text-xl">
+        {{ course.title }}
+      </div>
+      <p
+        class="mt-3 min-h-[60px] flex-[2_0_auto] text-left text-xl leading-[20px]"
+      >
+        {{ course.description }}
+      </p>
+      <div class="mt-3 flex flex-col text-left text-lg font-bold">
+        <p class="self-start">Rating: {{ course.rating }}</p>
+        <ngx-stars
+          [readonly]="true"
+          [initialStars]="course.rating"
+          customSize="1.25rem"
+          class=""
+        ></ngx-stars>
+      </div>
+      <p class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
+        Number of lessons: {{ course.lessonsCount }}
+      </p>
+      <div class="mt-3 flex-[2_0_auto] text-left text-lg font-bold">
+        Skills:
+        <ul>
+          <li
+            *ngFor="let skill of course.meta.skills; let i = index"
+            class="font-normal"
+          >
+            <p>
+              <span class="text-violet-800">{{ i + 1 }} </span>{{ skill }}
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</a>
+  </a>
+</ng-container>

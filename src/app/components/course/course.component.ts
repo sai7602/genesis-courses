@@ -37,6 +37,7 @@ export class CourseComponent implements OnInit {
         );
         this.posterSrc = data.previewImageLink + '/cover.webp';
         const getLesson = window.localStorage.getItem(data.id);
+        console.log(getLesson);
         if (!getLesson) {
           window.localStorage.setItem(
             `${data.id}`,

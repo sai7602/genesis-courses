@@ -21,7 +21,7 @@ export class VideoPlayerComponent
   @ViewChild('videoPlayer', { static: false })
   videoPlayer!: ElementRef<HTMLVideoElement>;
   @Input() posterSrc!: string;
-  @Input() videoSrc!: string;
+  @Input() videoSrc: string = '';
   @Input() isHovering: boolean = false;
   @Input() lessonId: string = '';
   currentTime!: number;
@@ -52,7 +52,9 @@ export class VideoPlayerComponent
       this.videoPlayer.nativeElement.currentTime = this.currentTime;
     }
     this.hls = new Hls();
+
     this.hls.loadSource(this.videoSrc);
+
     this.hls.attachMedia(this.videoPlayer.nativeElement);
   }
   hoverOn() {
