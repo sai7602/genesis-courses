@@ -24,18 +24,19 @@ export class CourseComponent implements OnInit {
   videoSrc!: string;
   shouldReloadVideo = false;
   lessonTitle!: string;
-  currentLessonId!: number;
+  currentLessonId: number = 1;
   sortedLessons!: Lesson[];
+  lessonId: string = '';
 
   ngOnInit(): void {
     this.getDataService.getCourse(this.courseID).subscribe(
       (data) => {
-        const getLesson = window.localStorage.getItem(data.id);
         this.course = data;
         this.sortedLessons = data.lessons.sort(
           (l1: Lesson, l2: Lesson) => l1.order - l2.order
         );
         this.posterSrc = data.previewImageLink + '/cover.webp';
+        const getLesson = window.localStorage.getItem(data.id);
         if (!getLesson) {
           window.localStorage.setItem(
             `${data.id}`,
@@ -43,10 +44,12 @@ export class CourseComponent implements OnInit {
           );
           this.videoSrc = data.lessons[0].link;
           this.lessonTitle = data.lessons[0].title;
+          this.lessonId = data.lessons[0].id;
         } else {
           this.currentLessonId = JSON.parse(getLesson).lessonId;
           this.videoSrc = data.lessons[this.currentLessonId - 1].link;
           this.lessonTitle = data.lessons[this.currentLessonId - 1].title;
+          this.lessonId = data.lessons[this.currentLessonId - 1].id;
         }
       },
       (error) => (this.error = error)
@@ -55,7 +58,7 @@ export class CourseComponent implements OnInit {
 
   setLessonData(lesson: Lesson) {
     this.videoSrc = lesson.link;
-    this.childComponent.updateVideoSrc(lesson.link);
+    this.childComponent.updateVideoSrc(lesson.link, lesson.id);
     this.lessonTitle = lesson.title;
     window.localStorage.setItem(
       `${this.course.id}`,
