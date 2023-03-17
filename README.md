@@ -1,27 +1,31 @@
-# GenesisCouses
+# GenesisCouses - Тестове завдання
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+Цей проєкт було розробленно по технічному завданню в рамках відбору Front-End School 2.0 
 
-## Development server
+## Технічні вимоги
+Проєкт розроблений на основі Angular.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Використовується бібліотека hls.js для відображення потокового відео у форматі m3u8.
 
-## Code scaffolding
+Використовується бібліотека ngx-pagination для виконання пагінації
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Процесс створення
 
-## Build
+Отриманні данні для всіх курсів і реалізована візуалізація на головній сторінці.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+При наведенні на карту автоматично починається програватись промо-відео конкретної лекціїю
 
-## Running unit tests
+При натсиканні на картці відкривається обраний курсю
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+В курсі було створено сторінку для всіх лекцій. 
 
-## Running end-to-end tests
+Якщо лекція заблокована то вона не доступна 
+для вибору і позначена закрита замочком.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Особливості запуску
 
-## Further help
+Оскільки backend має певні обмеження по CORS політикам виконати завдання допомгло встановлення 
+спеціального плагіна на chrome https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![image](https://user-images.githubusercontent.com/120205902/225851140-58f75b66-beda-478c-b5e1-190d78e83794.png)
+
