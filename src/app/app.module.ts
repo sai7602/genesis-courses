@@ -4,7 +4,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseComponent } from './components/course/course.component';
@@ -15,7 +15,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { LeftComponent } from './components/pagination/icon/left/left.component';
 import { RightComponent } from './components/pagination/icon/right/right.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MyHttpInterceptor } from './http-interceptor';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
@@ -39,7 +39,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BrowserAnimationsModule,
     MatButtonToggleModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
